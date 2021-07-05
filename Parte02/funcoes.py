@@ -23,7 +23,7 @@ def incluir_cadastro():
     qtd_dias(data_inicio, data_termino)
     valor_total = total_dias*valor_dia
     calculadora_alcance(valor_total)
-    gerar_dicionario(nome_anuncio, nome_cliente, data_inicio, data_termino, valor_total, max_visualizacoes, max_cliques, max_compartilhamentos)
+    gerar_lista(nome_anuncio, nome_cliente, data_inicio, data_termino, valor_total, max_visualizacoes, max_cliques, max_compartilhamentos)
 
 #Cálculo de quantos dias de duração o anúncio terá 
 def qtd_dias(inicio, termino):
@@ -34,40 +34,34 @@ def qtd_dias(inicio, termino):
     return total_dias
 
     
-#Gera dicionário para gravar no relatório
-def gerar_dicionario(anuncio, cliente, inicio, termino, valor, visualizacoes, compartilhamentos, cliques):
-    pass
+
+def gerar_lista(anuncio, cliente, inicio, termino, valor, visualizacoes, compartilhamentos, cliques):
+    global lista
+    lista = [anuncio, cliente, inicio, termino, valor, visualizacoes, compartilhamentos, cliques]
+    gravar_relatorio(lista)
 
 
-def criar_relatorio(dic):
-    arquivo = open("relatorio.txt", "a")
+
+def gravar_relatorio(lista):
+    arquivo = open("Parte02/relatorio.txt", "a")
     arquivo.close()
 
-    arquivo = open('relatorio.txt', 'r') # Abra o arquivo (leitura)
+    arquivo = open('Parte02/relatorio.txt', 'r')
     conteudo = arquivo.readlines()
-    conteudo.append(str(dic))   # insira seu conteúdo
+    conteudo.append(str(lista))
 
-    arquivo = open('relatorio.txt', 'w') # Abre novamente o arquivo (escrita)
-    arquivo.writelines(conteudo) # escreva o conteúdo criado anteriormente nele.
+    arquivo = open('Parte02/relatorio.txt', 'w')
+    arquivo.writelines(conteudo)
     arquivo.writelines("\n")    
 
     arquivo.close()
 
 
 
+#Não obtive conhecimento suficiente para proseguir
 def consulta_cliente():
-    cliente=input("Informe nome do cliente para consulta: ")
-    arquivo = open('Desafio02/relatorio.txt', 'r')
-    arquivo.readlines()
-    for linha in arquivo:
-        if linha.find(cliente) :
-            print(linha)
-    arquivo.close()
+    pass
 
 
 def consulta_data():
-    data=input("Informe nome do cliente para consulta: ")
-    arquivo = open('relatorio.txt', 'r')
-    for linha in arquivo:
-        if linha.find(data) > -1:
-            print (linha)
+    pass
